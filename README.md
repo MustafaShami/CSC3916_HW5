@@ -1,4 +1,4 @@
-THIS APP USES THE API FROM "API_HW5"
+THIS APP USES THE API FROM "API_HW5" ON GITHUB
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
