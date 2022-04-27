@@ -1,4 +1,3 @@
-THIS APP USES THE API FROM "CSC_HW4" ON GITHUB
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

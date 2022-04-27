@@ -18,17 +18,17 @@ class MovieList extends Component {
         dispatch(fetchMovies());
     }
 
-    handleSelect(selectedIndex, e) { //when a person actually clicks on the page
+    handleSelect(selectedIndex, e) {
         const {dispatch} = this.props;
         dispatch(setMovie(this.props.movies[selectedIndex]));
     }
 
-    handleClick = (movie) => { //handle click events
+    handleClick = (movie) => {
         const {dispatch} = this.props;
         dispatch(setMovie(movie));
     }
 
-    render() { //handles the rendering of our component
+    render() {
         const MovieListCarousel = ({movieList}) => {
             if (!movieList) {
                 return <div>Loading....</div>

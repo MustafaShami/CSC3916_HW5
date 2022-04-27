@@ -1,7 +1,7 @@
 import actionTypes from '../constants/actionTypes';
 import runtimeEnv from '@mars/heroku-js-runtime-env'
 
-//these 3 are sent to the reducer
+
 function moviesFetched(movies) {
     return {
         type: actionTypes.FETCH_MOVIES,
@@ -23,14 +23,13 @@ function movieSet(movie) {
     }
 }
 
-//dispatch is what sends the above 3 function to the reducer
 export function setMovie(movie) {
     return dispatch => {
         dispatch(movieSet(movie));
     }
 }
 
-export function fetchMovie(movieId) { //title because that's what we used in the schema in our api
+export function fetchMovie(movieId) {
     const env = runtimeEnv();
     return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
