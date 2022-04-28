@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
+import { submitReview } from "../actions/movieActions"
+import { Form, Button } from 'react-bootstrap';
 
 class MovieDetail extends Component {
 
@@ -14,10 +16,47 @@ class MovieDetail extends Component {
         }
     }
 
+    constructor(props){
+        super(props);
+
+        this.updateDetails = this.updateDetails.bind(this);
+        this.updateRating = this.updateRating.bind(this);
+        this.submit = this.submit.bind(this);
+        this.state = {
+            details:{
+
+                movieTitle: this.props.title,
+                user: localStorage.getItem('username'),
+                review: '',
+                rating: ''
+            }
+        };
+    }
+
     //when the user clicks submit button
     submit(){
         const {dispatch} = this.props;
         dispatch(submitReview(this.state.details));
+    }
+
+    // update movie details when the user submits a new rating/review
+    updateDetails(event){
+        let updateDetails = Object.assign({}, this.state.details);
+
+        updateDetails[event.target.id] = event.target.value;
+        this.setState({
+            details: updateDetails
+        });
+    }
+
+    // Function to update the rating value when user clicks on specfic rating
+    updateRating(event){
+        let updateDetails = Object.assign({}, this.state.details);
+
+        updateDetails.rating = event.target.value;
+        this.setState({
+            details: updateDetails
+        });
     }
 
     render() {
