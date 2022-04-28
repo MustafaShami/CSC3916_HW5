@@ -14,6 +14,12 @@ class MovieDetail extends Component {
         }
     }
 
+    //when the user clicks submit button
+    submit(){
+        const {dispatch} = this.props;
+        dispatch(submitReview(this.state.details));
+    }
+
     render() {
         const DetailInfo = () => {
             if (!this.props.selectedMovie) {
@@ -43,6 +49,32 @@ class MovieDetail extends Component {
                                 &nbsp;  <BsStarFill /> {review.rating}
                             </p>
                         )}
+
+                        //add form for user to submit review
+                        <Form>
+                            <Form.Group controlId="review">
+                                <Form.Label>Review</Form.Label>
+                                <Form.Control as="textarea" onChange={this.updateDetails} value={this.state.details.review} placeholder="Enter a review" />
+                            </Form.Group>
+                            <Form.Group>
+                                <div key={'inline-radio'}>
+                                    <Form.Label>Rating &nbsp;
+                                        <Form.Check onChange={this.updateRating} inline label="1" name="rating" type='radio' value={1} />
+                                        <Form.Check onChange={this.updateRating} inline label="2" name="rating" type="radio" value={2} />
+                                        <Form.Check onChange={this.updateRating} inline label="3" name="rating" type="radio" value={3} />
+                                        <Form.Check onChange={this.updateRating} inline label="4" name="rating" type="radio" value={4} />
+                                        <Form.Check onChange={this.updateRating} inline label="5" name="rating" type="radio" value={5} />
+                                        Stars </Form.Label>
+                                </div>
+                            </Form.Group>
+                            <Form.Group>
+                                <Button type="submit" onClick={this.submit}>
+                                    Submit Review
+                                </Button>
+                            </Form.Group>
+                        </Form>
+                        //end form
+
                     </Card.Body>
                 </Card>
             )
