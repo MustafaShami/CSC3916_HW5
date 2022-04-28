@@ -1,6 +1,8 @@
 # Link to App
 https://shami-hw5-webapi.herokuapp.com/signup#/signin
 
+Uses API from CSC_HW4 repository
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
