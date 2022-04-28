@@ -33,6 +33,16 @@
   color: #61dafb;
 }
 
+.carousel-item{
+  height: 80vh;
+  min-height: 300px;
+}
+.carousel-caption{
+  margin-top: 20%;
+  margin-bottom: 20%;
+  rgba(0,0,0);
+}
+
 .form-horizontal {
   width: 40% !important;
   margin-left: 30%
