@@ -5,93 +5,70 @@ import runtimeEnv from '@mars/heroku-js-runtime-env'
 function moviesFetched(movies) {
     return {
         type: actionTypes.FETCH_MOVIES,
-        movies: movies,
-    };
+        movies: movies
+    }
 }
 
 function movieFetched(movie) {
     return {
         type: actionTypes.FETCH_MOVIE,
         selectedMovie: movie
-    };
+    }
 }
 
 function movieSet(movie) {
     return {
         type: actionTypes.SET_MOVIE,
         selectedMovie: movie
-    };
+    }
 }
 
 export function setMovie(movie) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(movieSet(movie));
-    };
+    }
 }
 
 export function fetchMovie(movieId) {
     const env = runtimeEnv();
-    return (dispatch) => {
+    return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies/${movieId}?reviews=true`, {
             method: 'GET',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('token')
+                'Authorization': localStorage.getItem('token')
             },
-            mode: 'cors',
+            mode: 'cors'
         }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            return response.json();
+            return response.json()
         }).then((res) => {
-            dispatch(movieFetched(res.movie[0])); //added .movie[0]
+            dispatch(movieFetched(res));
         }).catch((e) => console.log(e));
     }
 }
 
 export function fetchMovies() {
     const env = runtimeEnv();
-    return (dispatch) => {
+    return dispatch => {
         return fetch(`${env.REACT_APP_API_URL}/movies?reviews=true`, {
             method: 'GET',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: localStorage.getItem('token')
+                'Authorization': localStorage.getItem('token')
             },
-            mode: 'cors',
+            mode: 'cors'
         }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
-            return response.json();
+            return response.json()
         }).then((res) => {
             dispatch(moviesFetched(res));
         }).catch((e) => console.log(e));
-    };
-}
-
-export function newRating(input, movie) { //new function so that user can add new rating on the app
-    const env = runtimeEnv();
-    return (dispatch) => {
-        return fetch(`${env.REACT_APP_API_URL}/reviews`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-                Authorization: localStorage.getItem("token"),
-            },
-            body: JSON.stringify(input),
-            mode: "cors",
-        }).then((response) => {
-            if(!response.ok){
-                throw Error(response.statusText);
-            }
-            return response.json();
-        }).then(() => {
-            dispatch(fetchMovie(movie));
-        }).catch((e) => console.log(e));
-    };
+    }
 }

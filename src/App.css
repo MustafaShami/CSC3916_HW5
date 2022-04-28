@@ -14,15 +14,6 @@
   }
 }
 
-.carousel.slide img,
-.panel-body img {
-  max-width: 50rem;
-}
-
-.movies img{
-  max-width: 30rem;
-}
-
 .App-header {
   background-color: #222;
   height: 150px;
