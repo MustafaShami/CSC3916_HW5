@@ -24,7 +24,7 @@ class MovieDetail extends Component {
         this.submit = this.submit.bind(this);
         this.state = {
             details:{
-
+                //the variables for if you want to leave a review
                 movieTitle: this.props.title,
                 user: localStorage.getItem('username'),
                 review: '',
